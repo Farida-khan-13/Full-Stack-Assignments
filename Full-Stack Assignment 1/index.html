@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration & Result Management</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>Student Registration and Result Management System</h1>
+      <p>Mini Project using HTML, CSS and JavaScript</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">NEW RECORD</p>
+          <h2>Student details</h2>
+        </div>
+        <span class="tag">HTML · CSS · JavaScript</span>
+      </div>
+
+      <form id="studentForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="studentName">Full name <span>*</span></label>
+            <input id="studentName" name="studentName" type="text" placeholder="e.g. Aanya Sharma" required minlength="2" maxlength="60">
+          </div>
+          <div class="field">
+            <label for="rollNumber">Roll number <span>*</span></label>
+            <input id="rollNumber" name="rollNumber" type="text" placeholder="e.g. ITM2026001" required maxlength="20">
+          </div>
+          <div class="field">
+            <label for="email">Email address <span>*</span></label>
+            <input id="email" name="email" type="email" placeholder="student@example.com" required>
+          </div>
+          <div class="field">
+            <label for="course">Course / class <span>*</span></label>
+            <input id="course" name="course" type="text" placeholder="e.g. BCA - Semester 1" required maxlength="60">
+          </div>
+        </div>
+
+        <div class="marks-heading">
+          <h2>Enter Marks</h2>
+          <p>Enter marks out of 100 for each subject. Passing mark is 35.</p>
+        </div>
+
+        <div class="form-grid marks-grid">
+          <div class="field">
+            <label for="htmlMarks">HTML5</label>
+            <input id="htmlMarks" name="htmlMarks" type="number" min="0" max="100" step="1" placeholder="0–100" required>
+          </div>
+          <div class="field">
+            <label for="cssMarks">CSS3</label>
+            <input id="cssMarks" name="cssMarks" type="number" min="0" max="100" step="1" placeholder="0–100" required>
+          </div>
+          <div class="field">
+            <label for="jsMarks">JavaScript</label>
+            <input id="jsMarks" name="jsMarks" type="number" min="0" max="100" step="1" placeholder="0–100" required>
+          </div>
+          <div class="field">
+            <label for="communicationMarks">Communication</label>
+            <input id="communicationMarks" name="communicationMarks" type="number" min="0" max="100" step="1" placeholder="0–100" required>
+          </div>
+          <div class="field">
+            <label for="databaseMarks">Database</label>
+            <input id="databaseMarks" name="databaseMarks" type="number" min="0" max="100" step="1" placeholder="0–100" required>
+          </div>
+        </div>
+
+        <p id="formMessage" class="form-message" role="alert" aria-live="polite"></p>
+        <div class="actions">
+          <button class="button button-primary" type="submit">Calculate & save result</button>
+          <button class="button button-secondary" type="reset">Clear form</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="resultSection" class="panel result-panel" hidden aria-live="polite">
+      <div class="section-heading">
+        <h2>Result</h2>
+        <span id="statusBadge" class="status-badge">PASS</span>
+      </div>
+      <div class="student-summary">
+        <div><span class="summary-label">Student</span><strong id="resultName">—</strong></div>
+        <div><span class="summary-label">Roll number</span><strong id="resultRoll">—</strong></div>
+        <div><span class="summary-label">Course / class</span><strong id="resultCourse">—</strong></div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><span>Total marks</span><strong id="totalMarks">0 / 500</strong></div>
+        <div class="stat-card"><span>Percentage</span><strong id="percentage">0%</strong></div>
+        <div class="stat-card"><span>Subjects passed</span><strong id="subjectsPassed">0 / 5</strong></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Subject</th><th>Marks</th><th>Outcome</th></tr></thead>
+          <tbody id="marksTable"></tbody>
+        </table>
+      </div>
+      <p class="saved-note"><span class="saved-dot"></span> This student record has been saved in this browser's Local Storage.</p>
+      <details class="json-details">
+        <summary>View student object as JSON</summary>
+        <pre id="jsonOutput"></pre>
+      </details>
+    </section>
+
+    <section class="panel records-panel">
+      <div class="section-heading">
+        <h2>Saved Student Records</h2>
+        <button id="clearRecordsBtn" class="button button-danger" type="button">Clear Records</button>
+      </div>
+      <p id="recordsEmpty" class="empty-state">No saved records yet. Submit the form to add the first student.</p>
+      <div class="table-wrap" id="recordsTableWrap" hidden>
+        <table>
+          <thead><tr><th>Name</th><th>Roll number</th><th>Total</th><th>Percentage</th><th>Result</th></tr></thead>
+          <tbody id="recordsTable"></tbody>
+        </table>
+      </div>
+      <p class="storage-note">Records are stored only in this browser on this device. Clearing browser data may remove them.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Student Registration and Result Management System</p>
+  </footer>
+</body>
+</html>
